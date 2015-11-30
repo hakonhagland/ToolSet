@@ -11,6 +11,7 @@ ToolSet->export(
     'File::Path'            => '!mkpath',
     'autouse'               => [ 'File::Copy' => 'copy' ],
     'autouse'               => [ 'File::Find' => 'find' ],
+    't::Sample::StoreArguments' => { a => "String with spaces", b => 1 },
 );
 
 1; # return true

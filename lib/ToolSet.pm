@@ -62,6 +62,11 @@ sub import {
             my $args = join( q{ } => @$request );
             $evaltext = "package $caller; use $mod qw( $args )";
         }
+        elsif ( ref $request eq 'HASH' ) {
+            my @temp = map {"'". $_ . "'", "'" . $request->{$_} . "'"} keys %$request; 
+            my $args = join( ' , ', @temp );
+            $evaltext = "package $caller; use $mod ( $args )";
+        }
         elsif ( ref( \$request ) eq 'SCALAR' ) {
             $evaltext = "package $caller; use $mod qw( $request )";
         }
